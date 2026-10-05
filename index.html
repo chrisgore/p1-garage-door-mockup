@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Design mockup for P1 Garage Door Repair, Cumming, GA. Placeholder content.">
+<style>[hidden]{display:none!important}img{max-width:100%}</style>
+
+<title>P1 Garage Door Repair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,50..125,100..900;1,50..125,100..900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800;900&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a livery switcher above a full mock homepage. Carbon hero with skewed livery stripes and a
+   timing tower of today's open windows; light sections split by checkered-flag bands; dark pit-board specials. */
+:root{
+  color-scheme: light;
+  --paper:#F4F4F2; --card:#FFFFFF; --ink:#15171A; --muted:#565B63; --line:#D8D9D5;
+  --carbon:#111316; --carbon-2:#1A1D21; --on-carbon:#F2F2EF; --carbon-muted:#A4A9B0; --tower:#0A0B0D;
+  --ok:#38D67E; --warn:#FFC83D; --alert:#FF5B4F;
+  /* livery: Papaya (default) */
+  --pri:#FF7A00; --on-pri:#111111; --pri-text:#B64F00; --stripe2:#F2F2EF;
+  --hero-bg:var(--carbon); --hero-fg:var(--on-carbon); --hero-muted:var(--carbon-muted);
+  --hero-em:var(--pri); --em-bar:transparent; --weave:rgba(255,255,255,.035);
+  --tint:color-mix(in srgb, var(--pri) 8%, var(--paper));
+  --f-display:'Saira','Saira Condensed','Arial Narrow',sans-serif;
+  --f-body:'Barlow','Segoe UI',system-ui,sans-serif;
+}
+:root[data-livery="red"]{ --pri:#D7141A; --on-pri:#FFFFFF; --pri-text:#B30F14; --stripe2:#FFFFFF; }
+:root[data-livery="lime"]{ --pri:#7BCB2E; --on-pri:#0E0F10; --pri-text:#3E7A10; --stripe2:#FFFFFF; }
+:root[data-livery="gulf"]{
+  --pri:#F26A1F; --on-pri:#111111; --pri-text:#B94C0C; --stripe2:#0E2236;
+  --hero-bg:#93CBEA; --hero-fg:#0E2236; --hero-muted:#2C4760; --hero-em:#0E2236; --em-bar:#F26A1F;
+  --weave:rgba(14,34,54,.05); --tint:#E6F2F9;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:20px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+.disp{font-family:var(--f-display);font-style:italic;font-stretch:75%;text-transform:uppercase}
+:focus-visible{outline:3px solid var(--pri);outline-offset:3px}
+
+/* ---------- livery switcher (mockup chrome, not part of the site) ---------- */
+.livery-bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:#E7E7E3;border-bottom:1px solid #CFCFCA;color:#1F2226}
+.lb-inner{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap;padding-block:10px}
+.lb-label{font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.lb-opts{display:flex;gap:8px;overflow-x:auto;min-width:0;max-width:100%;padding-block:2px}
+.lb-opts button{display:flex;align-items:center;gap:8px;flex:none;font:600 14px/1.1 var(--f-body);color:#1F2226;background:#FFFFFF;border:1px solid #C9C9C4;border-radius:999px;padding:6px 12px 6px 6px;cursor:pointer;text-align:left}
+.lb-opts button small{display:block;font-weight:500;font-size:11px;color:#5E636A}
+.lb-opts button[aria-pressed="true"]{border-color:#111316;box-shadow:inset 0 0 0 1px #111316;background:#111316;color:#FFFFFF}
+.lb-opts button[aria-pressed="true"] small{color:#C4C8CE}
+.sw{width:30px;height:30px;border-radius:50%;flex:none;background:linear-gradient(115deg,var(--a) 0 46%,var(--c) 46% 56%,var(--b) 56%);border:1px solid rgba(0,0,0,.2)}
+.lb-note{font-size:13px;color:#5E636A;margin-left:auto}
+
+/* ---------- shared pieces ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:700 15px/1 var(--f-body);text-transform:uppercase;letter-spacing:.07em;padding:15px 24px;text-decoration:none;border:0;cursor:pointer;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:filter .15s, background-color .3s, color .3s;white-space:nowrap}
+.btn:focus-visible{outline:none;box-shadow:inset 0 0 0 3px currentColor}
+.btn:hover{filter:brightness(1.08)}
+.btn-pri{background:var(--pri);color:var(--on-pri)}
+.btn-ghost{background:color-mix(in srgb, var(--hero-fg) 13%, transparent);color:var(--hero-fg)}
+.btn-dark{background:var(--carbon);color:var(--on-carbon)}
+.btn-lg{font-size:16px;padding:18px 30px}
+.btn svg{flex:none}
+.checker{height:18px;background:repeating-conic-gradient(#15171A 0 25%,#FFFFFF 0 50%) 0 0/18px 18px}
+.kicker{display:flex;align-items:center;gap:10px;font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--pri-text)}
+.kicker::before{content:"";width:20px;height:10px;background:var(--pri);transform:skewX(-20deg);transition:background-color .3s}
+.sec{padding-block:80px}
+.sec h2{font-family:var(--f-display);font-style:italic;font-stretch:75%;font-weight:800;text-transform:uppercase;font-size:clamp(32px,4.2vw,50px);line-height:1;letter-spacing:-.005em}
+.sec-head{display:grid;gap:14px;max-width:62ch;margin-bottom:40px}
+.sec-head p:last-child{color:var(--muted)}
+.tint{background:var(--tint);transition:background-color .3s}
+.tag{display:inline-block;font:700 10px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;padding:4px 6px;border:1px solid currentColor;opacity:.7}
+
+/* ---------- site header ---------- */
+.site-head{background:var(--card);border-bottom:1px solid var(--line)}
+.head-row{display:flex;align-items:center;gap:24px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.plate{display:grid;place-items:center;min-width:64px;height:52px;padding:0 10px 2px 6px;background:var(--pri);color:var(--on-pri);font:italic 900 34px/1 var(--f-display);font-stretch:85%;letter-spacing:-.02em;border:3px solid var(--ink);border-radius:12px 12px 22px 22px/12px 12px 16px 16px;transition:background-color .3s,color .3s}
+.word{display:grid;line-height:1}
+.word b{font:italic 800 22px/1 var(--f-display);font-stretch:75%;text-transform:uppercase;letter-spacing:.01em}
+.word span{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.nav{display:flex;gap:26px;margin-left:auto}
+.nav a{text-decoration:none;font-weight:600;font-size:15px;color:var(--ink);padding-block:6px;border-bottom:2px solid transparent}
+.nav a:hover{border-color:var(--pri)}
+.head-call{margin-left:4px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;background:var(--hero-bg);color:var(--hero-fg);transition:background-color .3s,color .3s}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,var(--weave) 0 3px,transparent 3px 7px),repeating-linear-gradient(-45deg,var(--weave) 0 3px,transparent 3px 7px);pointer-events:none}
+.livery{position:absolute;top:-10%;bottom:-10%;right:-6%;width:46%;display:flex;gap:16px;transform:skewX(-16deg);pointer-events:none}
+.livery i{display:block;height:100%;animation:sweep .9s cubic-bezier(.2,.8,.2,1) both}
+.livery i:nth-child(1){width:52%;background:var(--pri);transition:background-color .3s}
+.livery i:nth-child(2){width:7%;background:var(--stripe2);animation-delay:.1s;transition:background-color .3s}
+.livery i:nth-child(3){width:3%;background:var(--pri);animation-delay:.18s;transition:background-color .3s}
+@keyframes sweep{from{transform:translateY(-110%)}}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.9fr);gap:48px;align-items:center;padding-block:76px 88px}
+.hero-copy{display:grid;gap:22px;min-width:0}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--hero-muted)}
+.hero h1{font-family:var(--f-display);font-style:italic;font-weight:800;font-stretch:72%;text-transform:uppercase;font-size:clamp(44px,6.6vw,84px);line-height:.92;letter-spacing:-.01em}
+.hero h1 em{display:inline;font-style:inherit;color:var(--hero-em);background:linear-gradient(transparent 80%,var(--em-bar) 80% 94%,transparent 94%)}
+.lede{font-size:19px;max-width:46ch;color:var(--hero-fg);opacity:.88}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.hero-facts{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px 28px;font-size:15px;color:var(--hero-muted)}
+.hero-facts b{display:block;font:italic 800 26px/1.1 var(--f-display);font-stretch:75%;color:var(--hero-fg);font-variant-numeric:tabular-nums}
+
+/* timing tower */
+.tower{position:relative;background:var(--tower);color:#F2F2EF;padding:18px;display:grid;gap:14px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55);border-top:5px solid var(--pri);transition:border-color .3s;min-width:0}
+.tw-head{display:flex;align-items:center;gap:10px;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#C9CDD3}
+.live{width:9px;height:9px;border-radius:50%;background:var(--alert);box-shadow:0 0 0 0 rgba(255,91,79,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(255,91,79,0)}100%{box-shadow:0 0 0 0 rgba(255,91,79,0)}}
+.tw-rows{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.tw-rows li{display:grid;grid-template-columns:52px minmax(0,1fr) auto;align-items:center;background:#16191D;animation:slot .6s cubic-bezier(.2,.8,.2,1) both}
+.tw-rows li:nth-child(2){animation-delay:.08s}.tw-rows li:nth-child(3){animation-delay:.16s}.tw-rows li:nth-child(4){animation-delay:.24s}
+@keyframes slot{from{transform:translateX(18px)}}
+.pos{align-self:stretch;display:grid;place-items:center;background:#262A30;font:italic 800 20px/1 var(--f-display);font-stretch:80%}
+.lead .pos{background:var(--pri);color:var(--on-pri);transition:background-color .3s}
+.slot{padding:13px 14px;font:600 20px/1 var(--f-display);font-stretch:80%;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.st{margin-right:12px;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:5px 8px;border:1px solid currentColor}
+.st.open{color:var(--ok)}.st.few{color:var(--warn)}.st.em{color:var(--alert)}
+.tw-cta{width:100%}
+.tw-foot{font-size:12px;color:#8C9198}
+
+/* ---------- trust strip ---------- */
+.trust{background:var(--card);border-bottom:1px solid var(--line)}
+.trust ul{list-style:none;margin:0;padding-block:20px;display:flex;flex-wrap:wrap;gap:12px 34px;justify-content:space-between}
+.trust li{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px}
+.trust svg{color:var(--pri-text);flex:none}
+
+/* ---------- services ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.svc{background:var(--card);border:1px solid var(--line);padding:26px 24px 24px;display:grid;gap:12px;align-content:start;clip-path:polygon(0 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%)}
+.ico{width:54px;height:42px;display:grid;place-items:center;background:var(--pri);color:var(--on-pri);transform:skewX(-14deg);transition:background-color .3s,color .3s}
+.ico svg{transform:skewX(14deg)}
+.svc h3{font:italic 800 24px/1.05 var(--f-display);font-stretch:78%;text-transform:uppercase}
+.svc p{color:var(--muted);font-size:16px}
+.svc a{font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--pri-text);margin-top:4px}
+.svc a:hover{text-decoration:underline}
+
+/* ---------- diagnosis ---------- */
+.diag{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:48px;align-items:start}
+.diag-copy{display:grid;gap:14px}
+.diag-copy p:last-child{color:var(--muted)}
+.diag-tool{display:grid;gap:16px;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{font:600 15px/1.2 var(--f-body);color:var(--ink);background:var(--card);border:1px solid var(--line);padding:10px 14px;cursor:pointer;text-align:left}
+.chips button:hover{border-color:var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#FFFFFF}
+.diag-out{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--pri);padding:24px;display:grid;gap:12px;transition:border-color .3s}
+.diag-out .lbl{font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.diag-out h3{font:italic 800 30px/1 var(--f-display);font-stretch:75%;text-transform:uppercase}
+.diag-out dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:4px 0}
+.diag-out dl div{background:var(--paper);padding:12px 14px}
+.diag-out dt{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.diag-out dd{margin:4px 0 0;font-weight:600}
+#d-range{font:italic 800 26px/1.1 var(--f-display);font-stretch:78%;font-variant-numeric:tabular-nums}
+.d-safe{font-size:15px;padding:10px 14px;background:color-mix(in srgb, var(--warn) 22%, #FFFFFF);border:1px solid color-mix(in srgb, var(--warn) 60%, #8a6a00)}
+.d-safe[hidden]{display:none}
+.fine{font-size:13px;color:var(--muted)}
+.diag-out .btn{justify-self:start}
+
+/* ---------- specials (pit boards) ---------- */
+.dark{background:var(--carbon);color:var(--on-carbon)}
+.dark .kicker{color:var(--pri)}
+.dark .sec-head p:last-child{color:var(--carbon-muted)}
+.boards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.board{background:#0A0B0D;border:8px solid #2B2F35;padding:26px 22px;display:grid;gap:8px;align-content:start;position:relative}
+.board::after{content:"";position:absolute;left:-8px;right:-8px;top:-8px;height:8px;background:var(--pri);transition:background-color .3s}
+.amt{font:italic 900 clamp(48px,5.4vw,70px)/.9 var(--f-display);font-stretch:72%;color:var(--pri);font-variant-numeric:tabular-nums;transition:color .3s}
+.amt small{font-size:.45em;font-weight:800;margin-left:4px}
+.board h3{font:italic 700 22px/1.1 var(--f-display);font-stretch:80%;text-transform:uppercase;color:#FFFFFF}
+.board p:not(.amt){color:var(--carbon-muted);font-size:15px}
+.match{margin-top:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border:1px dashed #3A3F46;padding:18px 22px}
+.match b{font:italic 800 24px/1.1 var(--f-display);font-stretch:78%;text-transform:uppercase}
+.match span{color:var(--carbon-muted)}
+
+/* ---------- why P1 ---------- */
+.why{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:start}
+.why-copy{display:grid;gap:16px}
+.why-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:22px}
+.why-list li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start}
+.flag{width:30px;height:22px;margin-top:3px;background:repeating-conic-gradient(var(--ink) 0 25%,#FFFFFF 0 50%) 0 0/11px 11px;border:1px solid var(--ink);transform:skewX(-10deg)}
+.why-list h3{font:italic 800 22px/1.1 var(--f-display);font-stretch:78%;text-transform:uppercase}
+.why-list p{color:var(--muted);margin-top:4px}
+.owner{margin:0;background:var(--carbon);color:var(--on-carbon);display:grid}
+.owner-photo{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;align-content:center;gap:14px;background:repeating-linear-gradient(-30deg,var(--carbon-2) 0 14px,var(--carbon) 14px 28px);border-bottom:6px solid var(--pri);text-align:center;padding:20px;transition:border-color .3s}
+.owner-photo .plate{min-width:120px;height:96px;font-size:66px;border-color:#FFFFFF}
+.owner-photo span{font-size:14px;color:var(--carbon-muted);max-width:30ch}
+.owner figcaption{padding:20px 22px;display:grid;gap:6px}
+.owner figcaption b{font:italic 800 22px/1.1 var(--f-display);font-stretch:78%;text-transform:uppercase}
+.owner figcaption p{color:var(--carbon-muted);font-size:15px}
+
+/* ---------- reviews ---------- */
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.rev{background:var(--card);border:1px solid var(--line);padding:24px;display:grid;gap:14px;align-content:start}
+.stars{display:flex;gap:3px;color:var(--pri-text)}
+.rev blockquote{margin:0;font-size:17px}
+.rev footer{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px;color:var(--muted)}
+.rating{display:flex;align-items:baseline;gap:12px;margin-top:6px}
+.rating b{font:italic 900 52px/1 var(--f-display);font-stretch:75%}
+
+/* ---------- service area ---------- */
+.area{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:center}
+.area-copy{display:grid;gap:14px}
+.area-copy p{color:var(--muted)}
+.zips{font-size:15px}
+.zips b{color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.cities{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.cities li{background:var(--card);border:1px solid var(--line);padding:10px 16px;font-weight:600}
+.cities li.home{background:var(--ink);color:#FFFFFF;border-color:var(--ink);display:flex;align-items:center;gap:10px}
+.cities li.home::before{content:"";width:18px;height:12px;background:repeating-conic-gradient(#FFFFFF 0 25%,var(--ink) 0 50%) 0 0/6px 6px}
+
+/* ---------- estimate ---------- */
+.est{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:start}
+.est-copy{display:grid;gap:16px}
+.callbox{background:var(--card);border:1px solid var(--line);padding:22px;display:grid;gap:6px}
+.callbox .lbl{font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.callbox .num{font:italic 900 clamp(34px,4vw,46px)/1 var(--f-display);font-stretch:75%;font-variant-numeric:tabular-nums;user-select:all}
+.callbox p{color:var(--muted);font-size:15px}
+form{background:var(--card);border:1px solid var(--line);padding:26px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.fld{display:grid;gap:6px;min-width:0}
+.fld.full{grid-column:1/-1}
+label{font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+input,select,textarea{font:500 16px/1.3 var(--f-body);color:var(--ink);background:var(--paper);border:1px solid var(--line);padding:12px;width:100%;border-radius:0}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--pri);outline-offset:0;border-color:var(--ink)}
+textarea{min-height:96px;resize:vertical}
+form .btn{grid-column:1/-1;justify-self:start}
+.sent{grid-column:1/-1;font-weight:600;background:color-mix(in srgb, var(--ok) 18%, #FFFFFF);border:1px solid color-mix(in srgb, var(--ok) 70%, #0a4a26);padding:12px 14px}
+
+/* ---------- footer ---------- */
+.foot{background:var(--carbon);color:var(--on-carbon)}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px;padding-block:52px 34px}
+.foot .logo{color:var(--on-carbon)}
+.foot .word span{color:var(--carbon-muted)}
+.foot .plate{border-color:#FFFFFF}
+.foot h4{margin:0 0 12px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--carbon-muted)}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--pri)}
+.foot-blurb{margin-top:16px;color:var(--carbon-muted);font-size:15px;max-width:34ch}
+.foot-base{border-top:1px solid #2A2E34;padding-block:18px 26px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:13px;color:var(--carbon-muted)}
+
+/* ---------- mobile call bar ---------- */
+.mob-call{display:none}
+
+@media (max-width:980px){
+  .nav{display:none}
+  .head-call{margin-left:auto}
+  .hero-grid,.diag,.why,.area,.est{grid-template-columns:minmax(0,1fr)}
+  .hero-grid{padding-block:56px 64px;gap:36px}
+  .livery{width:44%;right:-24%;opacity:.9}
+  .svc-grid,.boards,.revs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px;padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+  .lb-note{display:none}
+  .head-call{display:none}
+  .sec{padding-block:60px}
+  .livery{width:40%;right:-30%}
+  .svc-grid,.boards,.revs{grid-template-columns:minmax(0,1fr)}
+  form{grid-template-columns:minmax(0,1fr)}
+  .diag-out dl{grid-template-columns:minmax(0,1fr)}
+  .foot-grid{grid-template-columns:minmax(0,1fr)}
+  .trust ul{justify-content:flex-start}
+  .mob-call{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--card);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px))}
+  .mob-call .btn{padding:16px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="livery-bar">
+  <div class="wrap lb-inner">
+    <span class="lb-label">Livery</span>
+    <div class="lb-opts" role="group" aria-label="Color scheme">
+      <button type="button" data-l="papaya" aria-pressed="true"><span class="sw" style="--a:#FF7A00;--b:#111316;--c:#F2F2EF"></span><span>Papaya<small>KTM · McLaren</small></span></button>
+      <button type="button" data-l="red" aria-pressed="false"><span class="sw" style="--a:#D7141A;--b:#111316;--c:#FFFFFF"></span><span>Podium Red<small>Honda · Ferrari</small></span></button>
+      <button type="button" data-l="lime" aria-pressed="false"><span class="sw" style="--a:#7BCB2E;--b:#111316;--c:#FFFFFF"></span><span>Moto Lime<small>Kawasaki</small></span></button>
+      <button type="button" data-l="gulf" aria-pressed="false"><span class="sw" style="--a:#93CBEA;--b:#0E2236;--c:#F26A1F"></span><span>Gulf<small>Le Mans classic</small></span></button>
+    </div>
+    <span class="lb-note">Mockup · phone, prices, reviews and stats are placeholders</span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="logo" href="#top" aria-label="P1 Garage Door Repair, home">
+      <span class="plate">P1</span>
+      <span class="word"><b>Garage Door Repair</b><span>Cumming · Forsyth County</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Repair</a>
+      <a href="#services">New doors</a>
+      <a href="#services">Openers</a>
+      <a href="#specials">Specials</a>
+      <a href="#area">Service area</a>
+    </nav>
+    <a class="btn btn-pri head-call" href="#estimate"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>(770) 555-0142</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="livery" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Cumming, GA · Forsyth County · Open 24/7</p>
+      <h1>Garage door down? <em>We're rolling today.</em></h1>
+      <p class="lede">Broken springs, dead openers, snapped cables and off-track doors. You see the price before we pick up a wrench, and most repairs are done the same day.</p>
+      <div class="cta-row">
+        <a class="btn btn-pri btn-lg" href="#estimate">Book same-day repair</a>
+        <a class="btn btn-ghost btn-lg" href="#estimate">Call (770) 555-0142</a>
+      </div>
+      <ul class="hero-facts">
+        <li><b>4.9 ★</b>Google rating</li>
+        <li><b>Same day</b>on most repairs</li>
+        <li><b>$0</b>trip fee with repair</li>
+      </ul>
+    </div>
+    <aside class="tower" aria-label="Today's open appointment windows, sample">
+      <div class="tw-head"><span class="live" aria-hidden="true"></span>Next open windows · Today</div>
+      <ol class="tw-rows">
+        <li class="lead"><span class="pos">P1</span><span class="slot">1:00 – 3:00 PM</span><span class="st open">Open</span></li>
+        <li><span class="pos">P2</span><span class="slot">3:00 – 5:00 PM</span><span class="st open">Open</span></li>
+        <li><span class="pos">P3</span><span class="slot">5:00 – 7:00 PM</span><span class="st few">1 left</span></li>
+        <li><span class="pos">P4</span><span class="slot">After 7:00 PM</span><span class="st em">Emergency</span></li>
+      </ol>
+      <a class="btn btn-pri tw-cta" href="#estimate">Take the P1 window</a>
+      <p class="tw-foot">Sample schedule. On the live site these come from the booking calendar.</p>
+    </aside>
+  </div>
+</section>
+<div class="checker" aria-hidden="true"></div>
+
+<div class="trust">
+  <ul class="wrap">
+    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Licensed &amp; insured</li>
+    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Upfront, flat-rate pricing</li>
+    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Same-day service</li>
+    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Price-match promise</li>
+    <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Workmanship warranty</li>
+  </ul>
+</div>
+
+<section class="sec" id="services">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker">Service &amp; repair</p>
+      <h2>What we fix</h2>
+      <p>Trucks leave the shop stocked with springs, cables, rollers and openers, so most jobs finish on the first visit.</p>
+    </header>
+    <div class="svc-grid">
+      <article class="svc">
+        <span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h3l2-6 3 12 3-12 3 12 3-12 2 6h1"/></svg></span>
+        <h3>Broken springs</h3>
+        <p>Torsion and extension springs, replaced as a matched pair and balanced to your door's weight.</p>
+        <a href="#estimate">Book spring repair →</a>
+      </article>
+      <article class="svc">
+        <span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="9" height="7" rx="1"/><path d="M12 8.5h9M7.5 12v4M5 16h5v4H5z"/></svg></span>
+        <h3>Openers</h3>
+        <p>Repair or replace LiftMaster, Chamberlain, Genie and Craftsman units, plus remotes, keypads and safety sensors.</p>
+        <a href="#estimate">Book opener service →</a>
+      </article>
+      <article class="svc">
+        <span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7" cy="7" r="3.5"/><circle cx="17" cy="17" r="3.5"/><path d="M9.5 9.5l5 5"/></svg></span>
+        <h3>Cables &amp; rollers</h3>
+        <p>Frayed or snapped lift cables, worn drums and noisy rollers swapped for sealed nylon ones.</p>
+        <a href="#estimate">Book cable repair →</a>
+      </article>
+      <article class="svc">
+        <span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V9a5 5 0 0 1 5-5h11"/><circle cx="5" cy="14" r="1.6"/><circle cx="14" cy="4" r="1.6"/></svg></span>
+        <h3>Off-track doors</h3>
+        <p>Doors that jumped the track, bent track sections and damaged panels, straightened or replaced.</p>
+        <a href="#estimate">Book track repair →</a>
+      </article>
+      <article class="svc">
+        <span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16"/><path d="M3 8.5h18M3 12h18M3 15.5h18"/></svg></span>
+        <h3>New garage doors</h3>
+        <p>Steel, insulated, carriage-house and full-view glass doors, measured, installed and hauled away in one day.</p>
+        <a href="#estimate">Get a door quote →</a>
+      </article>
+      <article class="svc">
+        <span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8z"/></svg></span>
+        <h3>Tune-up &amp; safety check</h3>
+        <p>Lubrication, hardware tightening, balance test and an auto-reverse check, the pit stop that prevents the next breakdown.</p>
+        <a href="#estimate">Book a tune-up →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec tint" id="diagnose">
+  <div class="wrap diag">
+    <div class="diag-copy">
+      <p class="kicker">Quick diagnosis</p>
+      <h2>What's your door doing?</h2>
+      <p>Tap the closest match. You'll see the likely cause and a typical price range before you call.</p>
+    </div>
+    <div class="diag-tool">
+      <div class="chips" role="group" aria-label="Symptoms">
+        <button type="button" data-k="bang" aria-pressed="true">Loud bang, now it won't open</button>
+        <button type="button" data-k="hum" aria-pressed="false">Opener runs, door doesn't move</button>
+        <button type="button" data-k="track" aria-pressed="false">Door is crooked or off track</button>
+        <button type="button" data-k="reverse" aria-pressed="false">Closes, then goes back up</button>
+        <button type="button" data-k="remote" aria-pressed="false">Remote or keypad stopped working</button>
+      </div>
+      <div class="diag-out" aria-live="polite">
+        <p class="lbl">Likely cause</p>
+        <h3 id="d-title">Broken torsion spring</h3>
+        <p id="d-body">The spring above the door carries its weight. When one snaps it sounds like a gunshot, and the opener can't lift the door on its own.</p>
+        <dl>
+          <div><dt>Typical fix</dt><dd id="d-fix">Replace both springs as a matched pair, then rebalance</dd></div>
+          <div><dt>Typical range</dt><dd id="d-range">$250 – $450</dd></div>
+        </dl>
+        <p class="d-safe" id="d-safe">Safety: don't try to lift the door or pull the red release cord while it's open. Leave it closed and call.</p>
+        <a class="btn btn-pri" href="#estimate">Book this repair</a>
+        <p class="fine">Sample ranges for the mockup. The final price is quoted on site before any work starts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec dark" id="specials">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker">Specials</p>
+      <h2>This month's pit board</h2>
+      <p>Mention the offer when you book. One offer per visit. <span class="tag">Sample offers</span></p>
+    </header>
+    <div class="boards">
+      <article class="board"><p class="amt">$200<small>off</small></p><h3>Any new garage door</h3><p>Installed, with haul-away of the old door included.</p></article>
+      <article class="board"><p class="amt">$50<small>off</small></p><h3>Spring replacement</h3><p>Matched pair of high-cycle springs, balanced and tested.</p></article>
+      <article class="board"><p class="amt">$89</p><h3>Tune-up &amp; safety check</h3><p>Full lube, hardware check, balance test and auto-reverse test.</p></article>
+    </div>
+    <div class="match">
+      <b>Price-match promise</b>
+      <span>Got a lower written quote from a licensed local company? Show us and we'll match it.</span>
+      <a class="btn btn-pri" href="#estimate">Claim an offer</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap why">
+    <div class="why-copy">
+      <p class="kicker">Why P1</p>
+      <h2>P1 means first place. We work like a race team.</h2>
+      <ul class="why-list">
+        <li><span class="flag" aria-hidden="true"></span><div><h3>You approve the price first</h3><p>The tech quotes the full job before starting. No add-ons after the fact.</p></div></li>
+        <li><span class="flag" aria-hidden="true"></span><div><h3>Fast turnaround</h3><p>Stocked trucks and tight scheduling mean most repairs finish on the first visit, often the same day you call.</p></div></li>
+        <li><span class="flag" aria-hidden="true"></span><div><h3>Checked before we leave</h3><p>Every job ends with a balance test and an auto-reverse safety check, backed by a workmanship warranty.</p></div></li>
+      </ul>
+    </div>
+    <figure class="owner">
+      <div class="owner-photo"><span class="plate">P1</span><span>Owner photo goes here: on the bike, at the track, or next to the truck.</span></div>
+      <figcaption><b>Meet the owner</b><p>[Name] races [motocross / cars] and has fixed garage doors around Forsyth County for [X] years. Two or three lines in his own words.</p></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="sec tint" id="reviews">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="kicker">Reviews</p>
+      <h2>What Cumming homeowners say</h2>
+      <div class="rating"><b>4.9</b><span>average on Google · <span class="tag">Placeholder</span></span></div>
+    </header>
+    <div class="revs">
+      <article class="rev">
+        <div class="stars" aria-label="5 out of 5 stars"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div>
+        <blockquote>Spring snapped on a Saturday morning. They had it fixed by lunch, and the price on the phone was the price on the invoice.</blockquote>
+        <footer><span>Homeowner · Cumming</span><span class="tag">Sample</span></footer>
+      </article>
+      <article class="rev">
+        <div class="stars" aria-label="5 out of 5 stars"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div>
+        <blockquote>Our opener died with both cars inside. The tech showed us repair versus replace pricing and didn't push the expensive one.</blockquote>
+        <footer><span>Homeowner · Suwanee</span><span class="tag">Sample</span></footer>
+      </article>
+      <article class="rev">
+        <div class="stars" aria-label="5 out of 5 stars"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div>
+        <blockquote>New insulated door and opener in one visit. They cleaned up, hauled the old door off and walked us through the app.</blockquote>
+        <footer><span>Homeowner · Dawsonville</span><span class="tag">Sample</span></footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="area">
+  <div class="wrap area">
+    <div class="area-copy">
+      <p class="kicker">Service area</p>
+      <h2>Home track: Cumming, GA</h2>
+      <p>Based in Cumming and covering Forsyth County, North Fulton and the Lake Lanier side of Hall County.</p>
+      <p class="zips">Cumming ZIP codes <b>30028 · 30040 · 30041</b></p>
+    </div>
+    <ul class="cities" aria-label="Cities served">
+      <li class="home">Cumming</li>
+      <li>Alpharetta</li><li>Johns Creek</li><li>Milton</li><li>Suwanee</li><li>Sugar Hill</li>
+      <li>Buford</li><li>Dawsonville</li><li>Gainesville</li><li>Flowery Branch</li><li>Canton</li><li>Ball Ground</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec tint" id="estimate">
+  <div class="wrap est">
+    <div class="est-copy">
+      <p class="kicker">Get your price</p>
+      <h2>Call, or send the details</h2>
+      <div class="callbox">
+        <span class="lbl">Call or text</span>
+        <span class="num">(770) 555-0142</span>
+        <p>Emergency calls answered 24/7. Office hours Monday to Saturday, 7 AM to 7 PM.</p>
+      </div>
+    </div>
+    <form id="est-form" novalidate>
+      <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" value="Jordan Avery"></div>
+      <div class="fld"><label for="f-phone">Phone</label><input id="f-phone" name="phone" autocomplete="tel" inputmode="tel" value="(678) 555-0119"></div>
+      <div class="fld"><label for="f-zip">ZIP code</label><input id="f-zip" name="zip" inputmode="numeric" value="30040"></div>
+      <div class="fld"><label for="f-svc">What do you need?</label>
+        <select id="f-svc" name="service">
+          <option>Repair: spring</option><option>Repair: opener</option><option>Repair: cables or track</option>
+          <option>New garage door</option><option>Tune-up</option><option>Something else</option>
+        </select>
+      </div>
+      <div class="fld full"><label for="f-msg">What's happening?</label><textarea id="f-msg" name="message">Heard a loud bang this morning and now the door won't go up. Two-car door, about 10 years old.</textarea></div>
+      <button class="btn btn-pri btn-lg" type="submit">Request my price</button>
+      <p class="sent" id="f-sent" hidden>Sample form. On the live site this goes straight to the shop's phone and inbox.</p>
+    </form>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="checker" aria-hidden="true"></div>
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo" href="#top" aria-label="P1 Garage Door Repair, home"><span class="plate">P1</span><span class="word"><b>Garage Door Repair</b><span>Cumming · Forsyth County</span></span></a>
+      <p class="foot-blurb">Same-day garage door repair, openers and new doors for Cumming and North Atlanta.</p>
+    </div>
+    <div><h4>Services</h4><ul><li><a href="#services">Spring repair</a></li><li><a href="#services">Openers</a></li><li><a href="#services">Cables &amp; tracks</a></li><li><a href="#services">New doors</a></li><li><a href="#services">Tune-ups</a></li></ul></div>
+    <div><h4>Areas</h4><ul><li><a href="#area">Cumming</a></li><li><a href="#area">Alpharetta</a></li><li><a href="#area">Suwanee</a></li><li><a href="#area">Dawsonville</a></li><li><a href="#area">All areas</a></li></ul></div>
+    <div><h4>Contact</h4><ul><li>(770) 555-0142</li><li>[Street address]</li><li>Cumming, GA 30040</li><li>Open 24/7 for emergencies</li></ul></div>
+  </div>
+  <div class="wrap foot-base"><span>© 2026 P1 Garage Door Repair</span><span>Mockup v1 · placeholder content</span></div>
+</footer>
+
+<div class="mob-call">
+  <a class="btn btn-pri" href="#estimate">Call now</a>
+  <a class="btn btn-dark" href="#estimate">Book online</a>
+</div>
+
+<script>
+(function(){
+  var LIVERIES=['papaya','red','lime','gulf'];
+  var root=document.documentElement;
+  var btns=document.querySelectorAll('[data-l]');
+  function setLivery(l,write){
+    if(LIVERIES.indexOf(l)<0) l='papaya';
+    root.setAttribute('data-livery',l);
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-l')===l));});
+    if(write){
+      try{localStorage.setItem('p1-livery',l);}catch(e){}
+      try{history.replaceState(null,'','#'+l);}catch(e){}
+    }
+  }
+  var start=(location.hash||'').slice(1);
+  if(LIVERIES.indexOf(start)<0){ try{start=localStorage.getItem('p1-livery')||'';}catch(e){start='';} }
+  setLivery(start,false);
+  btns.forEach(function(b){b.addEventListener('click',function(){setLivery(b.getAttribute('data-l'),true);});});
+
+  var DIAG={
+    bang:{t:'Broken torsion spring',b:"The spring above the door carries its weight. When one snaps it sounds like a gunshot, and the opener can't lift the door on its own.",f:'Replace both springs as a matched pair, then rebalance',r:'$250 – $450',s:"Safety: don't try to lift the door or pull the red release cord while it's open. Leave it closed and call."},
+    hum:{t:'Stripped gear or broken spring',b:'If the motor runs but nothing moves, the plastic drive gear inside the opener is often worn out. A broken spring causes the same symptom, so check that first.',f:'Replace the drive gear, or the springs if one is broken',r:'$150 – $300',s:''},
+    track:{t:'Bent track, roller or cable failure',b:'A door hanging crooked usually means a cable came off its drum or a roller left the track. The door is under tension and can fall.',f:'Re-seat or replace cables and rollers, straighten or replace track',r:'$175 – $400',s:"Safety: keep people and cars clear and don't run the opener. A crooked door can drop."},
+    reverse:{t:'Safety sensors out of line',b:'The two small sensors near the floor must see each other. A bumped bracket, dirt on a lens or a frayed wire makes the door reverse.',f:'Clean, realign and test the sensors, replace if damaged',r:'$95 – $175',s:''},
+    remote:{t:'Remote or opener logic board',b:'Start with a fresh battery. If that does nothing, the remote may need reprogramming or the opener’s receiver board may have failed.',f:'Reprogram or replace remote and keypad, or the logic board',r:'$75 – $250',s:''}
+  };
+  var chips=document.querySelectorAll('[data-k]');
+  var el=function(id){return document.getElementById(id);};
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      var d=DIAG[c.getAttribute('data-k')];
+      chips.forEach(function(x){x.setAttribute('aria-pressed',String(x===c));});
+      el('d-title').textContent=d.t; el('d-body').textContent=d.b; el('d-fix').textContent=d.f; el('d-range').textContent=d.r;
+      el('d-safe').textContent=d.s; el('d-safe').hidden=!d.s;
+    });
+  });
+
+  el('est-form').addEventListener('submit',function(e){e.preventDefault(); el('f-sent').hidden=false;});
+})();
+</script>
+</body>
+</html>
