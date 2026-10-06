@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../config/site';
+---
+<Base title="Privacy Policy" description="How P1 Garage Door Repair handles the contact details you send through this website.">
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'Privacy' }]} title="Privacy policy" cta={false} />
+  <section class="sec">
+    <div class="wrap prose">
+      <p class="warn-box">Placeholder text for the mockup. Have the final policy reviewed before launch.</p>
+      <p>When you send a request through this site, we collect your name, phone number, ZIP code and the details you type. We use them only to reply, schedule and complete your service.</p>
+      <p>We don't sell your information. We share it only with services we use to run the business, such as our scheduling and phone systems.</p>
+      <p>To ask what we hold about you or to have it deleted, call {SITE.phone} or email {SITE.email}.</p>
+    </div>
+  </section>
+</Base>

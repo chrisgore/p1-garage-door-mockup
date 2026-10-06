@@ -1,0 +1,7 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+---
+<Base title="Page not found" description="This page doesn't exist.">
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'Not found' }]} eyebrow="Off track" title="That page isn't here" lede="The link may be old. Head back to the home page or call us." />
+</Base>

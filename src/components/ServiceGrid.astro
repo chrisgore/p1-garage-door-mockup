@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+import type { Service } from '../data/types';
+import { href } from '../config/site';
+interface Props { items: Service[]; cols?: 3 | 4 }
+const { items, cols = 3 } = Astro.props;
+---
+<div class:list={['svc-grid', { four: cols === 4 }]}>
+  {items.map((s) => (
+    <a class="svc" href={href(`/services/${s.slug}/`)}>
+      <span class="ico"><Icon name={s.icon} size={26} /></span>
+      <h3>{s.short}</h3>
+      <p>{s.cardBlurb}</p>
+      <span class="link">Details →</span>
+    </a>
+  ))}
+</div>

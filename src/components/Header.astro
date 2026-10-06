@@ -1,0 +1,24 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { NAV, SITE, href } from '../config/site';
+const current = Astro.url.pathname;
+---
+<header class="site-head">
+  <div class="wrap head-row">
+    <Logo />
+    <nav class="nav" aria-label="Main">
+      {NAV.map((n) => <a href={href(n.path)} aria-current={current === href(n.path) ? 'page' : undefined}>{n.label}</a>)}
+    </nav>
+    <a class="btn btn-pri head-call" href={SITE.phoneHref}><Icon name="phone" size={18} />{SITE.phone}</a>
+    <details class="menu">
+      <summary><Icon name="menu" size={20} />Menu</summary>
+      <div class="menu-panel">
+        <a href={href('/services/')}>All services</a>
+        {NAV.map((n) => <a href={href(n.path)}>{n.label}</a>)}
+        <a href={href('/contact/')}>Contact</a>
+        <a class="btn btn-pri" href={SITE.phoneHref}><Icon name="phone" size={18} />Call {SITE.phone}</a>
+      </div>
+    </details>
+  </div>
+</header>

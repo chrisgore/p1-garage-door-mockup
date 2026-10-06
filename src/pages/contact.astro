@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import EstimateForm from '../components/EstimateForm.astro';
+import Tower from '../components/Tower.astro';
+---
+<Base title="Contact & Book a Repair" description="Book a garage door repair or get a price from P1 Garage Door Repair in Cumming, GA. Call or text, or send your details online. Emergency calls answered 24/7.">
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'Contact' }]} eyebrow="Book a repair" title="Get your price" lede="Call or text for the fastest answer, or send the details below and we'll call you back with a price and a time." cta={false}>
+    <Tower slot="side" />
+  </PageHero>
+  <section class="sec" id="estimate"><EstimateForm heading="Send the details" /></section>
+</Base>

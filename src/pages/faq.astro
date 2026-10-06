@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import FaqList from '../components/FaqList.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { FAQ_GROUPS } from '../data/faqs';
+const schema = [{
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_GROUPS.flatMap((g) => g.items).map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+}];
+---
+<Base title="Garage Door FAQ" description="Answers to common garage door questions: broken springs, openers, new doors, pricing, trip fees, warranties and scheduling, from P1 Garage Door Repair in Cumming, GA." schema={schema}>
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'FAQ' }]} eyebrow="Straight answers" title="Frequently asked questions" lede="Springs, openers, new doors, pricing and scheduling. If your question isn't here, call and ask." cta={false} />
+  <section class="sec">
+    <div class="wrap" style="max-width:900px">
+      {FAQ_GROUPS.map((g, i) => (
+        <div class="faq-group">
+          <h2>{g.title}</h2>
+          <FaqList items={g.items} openFirst={i === 0} />
+        </div>
+      ))}
+    </div>
+  </section>
+  <CtaBand title="Still have a question?" text="A real person answers the phone." />
+</Base>

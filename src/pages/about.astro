@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import WhyP1 from '../components/WhyP1.astro';
+import CtaBand from '../components/CtaBand.astro';
+import ReviewsGrid from '../components/ReviewsGrid.astro';
+---
+<Base title="About P1 Garage Door Repair" description="P1 Garage Door Repair is a locally owned garage door company in Cumming, GA. Upfront pricing, stocked trucks, same-day repairs and a workmanship warranty on every job.">
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'About' }]} eyebrow="Locally owned · Cumming, GA" title="About P1" lede="P1 is racing shorthand for first place. It's the standard we hold every repair to: show up fast, quote it straight, fix it right the first time." />
+  <TrustStrip />
+  <section class="sec"><WhyP1 heading="Run like a race team" /></section>
+  <section class="sec tint">
+    <div class="wrap">
+      <div class="prose">
+        <p class="kicker">How we work</p>
+        <h2 class="h2">The P1 standard</h2>
+        <p>A race team wins on preparation. Every truck carries the springs, cables, rollers, hinges and openers that cover most calls, so the fix happens on the first visit instead of a second trip next week.</p>
+        <p>Before any work starts, you get the full price for the job. If something else needs attention, the tech tells you and lets you decide. Nothing gets added without your approval.</p>
+        <p>Every job ends the same way: the door is balanced, the hardware is checked, and the auto-reverse is tested. Then we clean up and walk you through what we did.</p>
+        <p class="muted">[Owner story placeholder: how he got into garage doors, his racing background, and why he started P1. Two or three short paragraphs in his own words.]</p>
+      </div>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="wrap">
+      <header class="sec-head"><p class="kicker">Reviews</p><h2>What customers say</h2></header>
+      <ReviewsGrid />
+    </div>
+  </section>
+  <CtaBand />
+</Base>

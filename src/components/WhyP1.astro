@@ -1,0 +1,20 @@
+---
+import { SITE } from '../config/site';
+interface Props { heading?: string }
+const { heading = 'P1 means first place. We work like a race team.' } = Astro.props;
+---
+<div class="wrap why">
+  <div class="why-copy">
+    <p class="kicker">Why P1</p>
+    <h2 class="h2">{heading}</h2>
+    <ul class="why-list">
+      <li><span class="flag" aria-hidden="true"></span><div><h3>You approve the price first</h3><p>The tech quotes the full job before starting. No add-ons after the fact.</p></div></li>
+      <li><span class="flag" aria-hidden="true"></span><div><h3>Fast turnaround</h3><p>Stocked trucks and tight scheduling mean most repairs finish on the first visit, often the same day you call.</p></div></li>
+      <li><span class="flag" aria-hidden="true"></span><div><h3>Checked before we leave</h3><p>Every job ends with a balance test and an auto-reverse safety check, backed by our workmanship warranty.</p></div></li>
+    </ul>
+  </div>
+  <figure class="owner">
+    <div class="owner-photo"><span class="plate">P1</span><span>Owner photo goes here: on the bike, at the track, or next to the truck.</span></div>
+    <figcaption><b>Meet the owner</b><p>{SITE.ownerName} races [motocross / cars] and has fixed garage doors around Forsyth County for [X] years. Two or three lines in his own words.</p></figcaption>
+  </figure>
+</div>

@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, href } from '../config/site';
+import { CITIES } from '../data/cities';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Extra JSON-LD objects for this page */
+  schema?: Record<string, unknown>[];
+  /** Full title override (home page) */
+  fullTitle?: boolean;
+}
+const { title, description, schema = [], fullTitle = false } = Astro.props;
+const pageTitle = fullTitle ? title : `${title} | ${SITE.name}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const home = new URL(href('/'), Astro.site).href;
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': 'HomeAndConstructionBusiness',
+  '@id': `${home}#business`,
+  name: SITE.name,
+  url: home,
+  telephone: SITE.phone,
+  priceRange: '$$',
+  address: { '@type': 'PostalAddress', streetAddress: SITE.street, addressLocality: SITE.city, addressRegion: SITE.region, postalCode: SITE.zip, addressCountry: 'US' },
+  openingHours: 'Mo-Su 00:00-23:59',
+  areaServed: CITIES.map((c) => ({ '@type': 'City', name: `${c.name}, GA` })),
+};
+const blocks = [business, ...schema];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {SITE.isMockup && <meta name="robots" content="noindex, nofollow" />}
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta name="theme-color" content="#93CBEA" />
+  <link rel="icon" href={href('/favicon.svg')} type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wdth,wght@0,50..125,100..900;1,50..125,100..900&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" />
+  {blocks.map((b) => <script type="application/ld+json" set:html={JSON.stringify(b)} />)}
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {SITE.isMockup && <div class="mock-banner"><b>Design mockup.</b> Phone number, prices, reviews and ratings are placeholders.</div>}
+  <Header />
+  <main id="main"><slot /></main>
+  <Footer />
+</body>
+</html>

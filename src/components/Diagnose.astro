@@ -1,0 +1,50 @@
+---
+import { SYMPTOMS } from '../data/diagnose';
+import { href } from '../config/site';
+const first = SYMPTOMS[0];
+const data = Object.fromEntries(SYMPTOMS.map((s) => [s.key, { ...s, url: href(`/services/${s.service}/`) }]));
+---
+<section class="sec tint" id="diagnose">
+  <div class="wrap diag">
+    <div class="diag-copy">
+      <p class="kicker">Quick diagnosis</p>
+      <h2>What's your door doing?</h2>
+      <p>Tap the closest match. You'll see the likely cause and a typical price range before you call.</p>
+    </div>
+    <div class="diag-tool" data-diag={JSON.stringify(data)}>
+      <div class="chips" role="group" aria-label="Symptoms">
+        {SYMPTOMS.map((s, i) => <button type="button" data-k={s.key} aria-pressed={i === 0 ? 'true' : 'false'}>{s.label}</button>)}
+      </div>
+      <div class="diag-out" aria-live="polite">
+        <p class="lbl">Likely cause</p>
+        <h3 data-f="title">{first.title}</h3>
+        <p data-f="body">{first.body}</p>
+        <dl>
+          <div><dt>Typical fix</dt><dd data-f="fix">{first.fix}</dd></div>
+          <div><dt>Typical range</dt><dd class="d-range" data-f="range">{first.range}</dd></div>
+        </dl>
+        <p class="warn-box" data-f="safety" hidden={!first.safety}><b>Safety:</b> <span>{first.safety}</span></p>
+        <a class="btn btn-pri" data-f="url" href={href(`/services/${first.service}/`)}>See this repair</a>
+        <p class="fine">Sample ranges. The final price is quoted on site before any work starts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>('[data-diag]').forEach((tool) => {
+    const data = JSON.parse(tool.dataset.diag || '{}');
+    const f = (n: string) => tool.querySelector<HTMLElement>(`[data-f="${n}"]`)!;
+    const chips = tool.querySelectorAll<HTMLButtonElement>('[data-k]');
+    chips.forEach((c) => c.addEventListener('click', () => {
+      const d = data[c.dataset.k!];
+      chips.forEach((x) => x.setAttribute('aria-pressed', String(x === c)));
+      f('title').textContent = d.title;
+      f('body').textContent = d.body;
+      f('fix').textContent = d.fix;
+      f('range').textContent = d.range;
+      f('safety').querySelector('span')!.textContent = d.safety;
+      f('safety').hidden = !d.safety;
+      (f('url') as HTMLAnchorElement).href = d.url;
+    }));
+  });
+</script>

@@ -1,0 +1,40 @@
+---
+import { SITE } from '../config/site';
+import { SERVICES } from '../data/services';
+interface Props { heading?: string; preset?: string }
+const { heading = 'Call, or send the details', preset } = Astro.props;
+---
+<div class="wrap est">
+  <div class="est-copy">
+    <p class="kicker">Get your price</p>
+    <h2 class="h2">{heading}</h2>
+    <div class="callbox">
+      <span class="lbl">Call or text</span>
+      <a class="num" href={SITE.phoneHref}>{SITE.phone}</a>
+      <p>Emergency calls answered 24/7. {SITE.hoursOffice}.</p>
+    </div>
+  </div>
+  <form class="est-form" data-est novalidate>
+    <div class="fld"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+    <div class="fld"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+    <div class="fld"><label for="f-zip">ZIP code</label><input id="f-zip" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="5"></div>
+    <div class="fld"><label for="f-svc">What do you need?</label>
+      <select id="f-svc" name="service">
+        {SERVICES.map((s) => <option value={s.slug} selected={s.slug === preset}>{s.short}</option>)}
+        <option value="other">Something else</option>
+      </select>
+    </div>
+    <div class="fld full"><label for="f-msg">What's happening?</label><textarea id="f-msg" name="message" placeholder="Example: heard a loud bang and now the door won't go up. Two-car door, about 10 years old."></textarea></div>
+    <button class="btn btn-pri btn-lg" type="submit">Request my price</button>
+    <p class="fine">We reply within one business hour. Emergencies: call instead.</p>
+    <p class="sent" data-sent hidden>Mockup: this form is not connected yet. At launch it goes straight to the shop's phone and inbox.</p>
+  </form>
+</div>
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-est]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      form.querySelector<HTMLElement>('[data-sent]')!.hidden = false;
+    });
+  });
+</script>

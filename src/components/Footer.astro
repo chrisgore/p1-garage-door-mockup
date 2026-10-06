@@ -1,0 +1,51 @@
+---
+import Logo from './Logo.astro';
+import { SITE, href } from '../config/site';
+import { SERVICES } from '../data/services';
+import { CITIES } from '../data/cities';
+---
+<footer class="foot">
+  <div class="checker" aria-hidden="true"></div>
+  <div class="wrap foot-grid">
+    <div>
+      <Logo />
+      <p class="foot-blurb">Same-day garage door repair, openers and new doors for Cumming, Forsyth County and the north Atlanta suburbs.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>{SERVICES.map((s) => <li><a href={href(`/services/${s.slug}/`)}>{s.short}</a></li>)}</ul>
+    </div>
+    <div>
+      <h4>Service area</h4>
+      <ul>
+        {CITIES.slice(0, 7).map((c) => <li><a href={href(`/service-areas/${c.slug}/`)}>{c.name}</a></li>)}
+        <li><a href={href('/service-areas/')}>All areas</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href={href('/about/')}>About</a></li>
+        <li><a href={href('/reviews/')}>Reviews</a></li>
+        <li><a href={href('/specials/')}>Specials</a></li>
+        <li><a href={href('/faq/')}>FAQ</a></li>
+        <li><a href={href('/contact/')}>Contact</a></li>
+      </ul>
+      <h4 style="margin-top:22px">Contact</h4>
+      <ul>
+        <li><a href={SITE.phoneHref}>{SITE.phone}</a></li>
+        <li>{SITE.street}</li>
+        <li>{SITE.city}, {SITE.region} {SITE.zip}</li>
+        <li>{SITE.hoursShort}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-base">
+    <span>© {new Date().getFullYear()} {SITE.name}</span>
+    <span><a href={href('/privacy/')}>Privacy</a></span>
+  </div>
+</footer>
+<div class="mob-call">
+  <a class="btn btn-pri" href={SITE.phoneHref}>Call now</a>
+  <a class="btn btn-navy" href={href('/contact/')}>Book online</a>
+</div>

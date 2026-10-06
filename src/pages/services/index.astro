@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+import Diagnose from '../../components/Diagnose.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SERVICES } from '../../data/services';
+---
+<Base title="Garage Door Services in Cumming, GA" description="Garage door repair, spring replacement, openers, cables, off-track doors, new door installation and tune-ups in Cumming and Forsyth County. Same-day on most repairs.">
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'Services' }]} eyebrow="Cumming, GA · Forsyth County" title="Garage door services" lede="Repairs, openers, new doors and maintenance. Every job starts with an upfront price and ends with a balance and safety check." />
+  <TrustStrip />
+  <section class="sec">
+    <div class="wrap">
+      <ServiceGrid items={SERVICES} cols={4} />
+    </div>
+  </section>
+  <Diagnose />
+  <CtaBand />
+</Base>

@@ -1,0 +1,15 @@
+---
+import Icon from './Icon.astro';
+import { SITE, href } from '../config/site';
+interface Props { title?: string; text?: string }
+const { title = 'Door down? Call now.', text = `Most repairs done the same day. ${SITE.hoursShort}.` } = Astro.props;
+---
+<section class="cta-band">
+  <div class="wrap">
+    <div><h2>{title}</h2><p>{text}</p></div>
+    <div class="cta-row">
+      <a class="btn btn-navy btn-lg" href={SITE.phoneHref}><Icon name="phone" size={18} />{SITE.phone}</a>
+      <a class="btn btn-ghost btn-lg" href={href('/contact/')}>Book online</a>
+    </div>
+  </div>
+</section>

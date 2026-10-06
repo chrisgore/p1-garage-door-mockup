@@ -1,0 +1,140 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+import FaqList from '../../components/FaqList.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import EstimateForm from '../../components/EstimateForm.astro';
+import ReviewsGrid from '../../components/ReviewsGrid.astro';
+import Icon from '../../components/Icon.astro';
+import { SERVICES, serviceBySlug } from '../../data/services';
+import { CITIES } from '../../data/cities';
+import { SITE, href } from '../../config/site';
+import type { Service } from '../../data/types';
+
+export function getStaticPaths() {
+  return SERVICES.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props as { s: Service };
+const related = s.related.map(serviceBySlug).filter((x): x is Service => Boolean(x));
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: s.name,
+    serviceType: s.name,
+    url,
+    provider: { '@id': `${new URL(href('/'), Astro.site).href}#business` },
+    areaServed: CITIES.map((c) => `${c.name}, GA`),
+    description: s.metaDescription,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: s.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL(href('/'), Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: new URL(href('/services/'), Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: s.name, item: url },
+    ],
+  },
+];
+---
+<Base title={s.metaTitle} description={s.metaDescription} schema={schema}>
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'Services', path: '/services/' }, { label: s.short }]} eyebrow="Cumming, GA · Same-day service" title={s.h1} lede={s.lede}>
+    <aside class="side-card" slot="side" aria-label="Typical price and time">
+      <span class="lbl">Typical price <span class="tag">Sample</span></span>
+      <span class="big">{s.priceRange}</span>
+      <dl>
+        <div><dt>Time on site</dt><dd>{s.visitTime}</dd></div>
+        <div><dt>How pricing works</dt><dd>Exact price quoted on site before any work starts</dd></div>
+      </dl>
+      <a class="btn btn-pri" href={href('/contact/')}>Book this service</a>
+    </aside>
+  </PageHero>
+  <TrustStrip />
+
+  <section class="sec">
+    <div class="wrap content">
+      <div class="content-main">
+        <div class="block">
+          <p class="kicker">Signs you need this</p>
+          <h2>What you'll notice</h2>
+          <ul class="signs">{s.signs.map((t) => <li><Icon name="check" size={18} stroke={3} />{t}</li>)}</ul>
+        </div>
+
+        {s.safety && (
+          <p class="warn-box"><b>Safety:</b> {s.safety}</p>
+        )}
+
+        <div class="block">
+          <p class="kicker">How we do it</p>
+          <h2>The job, step by step</h2>
+          <ol class="steps">{s.process.map((p) => <li><div><b>{p.title}</b><span>{p.body}</span></div></li>)}</ol>
+        </div>
+
+        {s.sections.map((sec) => (
+          <div class="block">
+            <h2>{sec.heading}</h2>
+            <div class="prose">{sec.body.map((para) => <p>{para}</p>)}</div>
+          </div>
+        ))}
+
+        <div class="block">
+          <h2>What changes the price</h2>
+          <ul class="factors">{s.priceFactors.map((f) => <li>{f}</li>)}</ul>
+        </div>
+
+        <div class="block">
+          <p class="kicker">Questions</p>
+          <h2>{s.short}: common questions</h2>
+          <FaqList items={s.faqs} openFirst />
+        </div>
+      </div>
+
+      <aside class="aside">
+        <div class="aside-card">
+          <h3>Need it today?</h3>
+          <a class="num" href={SITE.phoneHref}>{SITE.phone}</a>
+          <p class="muted">{SITE.hoursShort}. Most repairs done the same day.</p>
+          <a class="btn btn-pri" href={href('/contact/')}>Book online</a>
+        </div>
+        <div class="aside-card">
+          <h3>Other services</h3>
+          <ul>{SERVICES.filter((o) => o.slug !== s.slug).map((o) => <li><a href={href(`/services/${o.slug}/`)}>{o.short}</a></li>)}</ul>
+        </div>
+        <div class="aside-card">
+          <h3>Areas we serve</h3>
+          <ul>{CITIES.slice(0, 8).map((c) => <li><a href={href(`/service-areas/${c.slug}/`)}>{c.name}</a></li>)}</ul>
+          <a class="link" href={href('/service-areas/')}>All areas →</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand />
+
+  <section class="sec">
+    <div class="wrap">
+      <header class="sec-head"><p class="kicker">Reviews</p><h2>Recent jobs</h2></header>
+      <ReviewsGrid />
+    </div>
+  </section>
+
+  {related.length > 0 && (
+    <section class="sec tint">
+      <div class="wrap">
+        <header class="sec-head"><p class="kicker">Related</p><h2>Often booked together</h2></header>
+        <ServiceGrid items={related} />
+      </div>
+    </section>
+  )}
+
+  <section class="sec" id="estimate"><EstimateForm preset={s.slug} /></section>
+</Base>

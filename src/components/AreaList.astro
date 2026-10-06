@@ -1,0 +1,7 @@
+---
+import { CITIES } from '../data/cities';
+import { href } from '../config/site';
+---
+<ul class="cities" aria-label="Cities served">
+  {CITIES.map((c) => <li><a class:list={{ home: c.slug === 'cumming-ga' }} href={href(`/service-areas/${c.slug}/`)}>{c.name}</a></li>)}
+</ul>

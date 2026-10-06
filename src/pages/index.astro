@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import Livery from '../components/Livery.astro';
+import Tower from '../components/Tower.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Diagnose from '../components/Diagnose.astro';
+import SpecialsBoard from '../components/SpecialsBoard.astro';
+import WhyP1 from '../components/WhyP1.astro';
+import ReviewsGrid from '../components/ReviewsGrid.astro';
+import AreaList from '../components/AreaList.astro';
+import EstimateForm from '../components/EstimateForm.astro';
+import Icon from '../components/Icon.astro';
+import { SITE, href } from '../config/site';
+import { SERVICES } from '../data/services';
+const featured = SERVICES.filter((s) => s.slug !== 'garage-door-repair' && s.slug !== 'emergency-repair');
+---
+<Base fullTitle title="Garage Door Repair in Cumming, GA | P1 Garage Door Repair" description="Same-day garage door repair in Cumming, GA. Broken springs, openers, cables and new doors, with the price quoted before work starts. Open 24/7 for emergencies.">
+  <section class="hero">
+    <Livery />
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Cumming, GA · Forsyth County · Open 24/7</p>
+        <h1>Garage door down? <em>We're rolling today.</em></h1>
+        <p class="lede">Broken springs, dead openers, snapped cables and off-track doors. You see the price before we pick up a wrench, and most repairs are done the same day.</p>
+        <div class="cta-row">
+          <a class="btn btn-pri btn-lg" href={href('/contact/')}>Book same-day repair</a>
+          <a class="btn btn-ghost btn-lg" href={SITE.phoneHref}><Icon name="phone" size={18} />Call {SITE.phone}</a>
+        </div>
+        <ul class="hero-facts">
+          <li><b>{SITE.rating} ★</b>Google rating</li>
+          <li><b>Same day</b>on most repairs</li>
+          <li><b>$0</b>trip fee with repair</li>
+        </ul>
+      </div>
+      <Tower />
+    </div>
+  </section>
+  <div class="checker" aria-hidden="true"></div>
+  <TrustStrip />
+
+  <section class="sec">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="kicker">Service &amp; repair</p>
+        <h2>What we fix</h2>
+        <p>Trucks leave the shop stocked with springs, cables, rollers and openers, so most jobs finish on the first visit.</p>
+      </header>
+      <ServiceGrid items={featured} />
+      <p style="margin-top:24px"><a class="link" href={href('/services/')}>All services →</a></p>
+    </div>
+  </section>
+
+  <Diagnose />
+
+  <section class="sec dark">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="kicker">Specials</p>
+        <h2>This month's pit board</h2>
+        <p>Mention the offer when you book. One offer per visit. <span class="tag">Sample offers</span></p>
+      </header>
+      <SpecialsBoard />
+    </div>
+  </section>
+
+  <section class="sec"><WhyP1 /></section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="kicker">Reviews</p>
+        <h2>What Cumming homeowners say</h2>
+        <div class="rating"><b>{SITE.rating}</b><span>average on Google <span class="tag">Placeholder</span></span></div>
+      </header>
+      <ReviewsGrid />
+      <p style="margin-top:24px"><a class="link" href={href('/reviews/')}>More reviews →</a></p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap area">
+      <div class="area-copy">
+        <p class="kicker">Service area</p>
+        <h2>Home track: Cumming, GA</h2>
+        <p>Based in Cumming and covering Forsyth County, North Fulton and the Lake Lanier side of Hall County.</p>
+        <p class="zips">Cumming ZIP codes <b>30028 · 30040 · 30041</b></p>
+      </div>
+      <AreaList />
+    </div>
+  </section>
+
+  <section class="sec tint" id="estimate"><EstimateForm /></section>
+</Base>

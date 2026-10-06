@@ -1,0 +1,32 @@
+---
+import Livery from './Livery.astro';
+import Icon from './Icon.astro';
+import { SITE, href } from '../config/site';
+interface Crumb { label: string; path?: string }
+interface Props { crumbs: Crumb[]; eyebrow?: string; title: string; lede?: string; cta?: boolean }
+const { crumbs, eyebrow, title, lede, cta = true } = Astro.props;
+const hasSide = Astro.slots.has('side');
+---
+<section class="hero page-hero">
+  <Livery />
+  <div class="wrap hero-grid" style={hasSide ? undefined : 'grid-template-columns:minmax(0,1fr)'}>
+    <div class="hero-copy">
+      <nav aria-label="Breadcrumb">
+        <ol class="crumbs">
+          {crumbs.map((c) => <li>{c.path ? <a href={href(c.path)}>{c.label}</a> : <span aria-current="page">{c.label}</span>}</li>)}
+        </ol>
+      </nav>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {lede && <p class="lede">{lede}</p>}
+      {cta && (
+        <div class="cta-row">
+          <a class="btn btn-pri btn-lg" href={href('/contact/')}>Book a repair</a>
+          <a class="btn btn-ghost btn-lg" href={SITE.phoneHref}><Icon name="phone" size={18} />Call {SITE.phone}</a>
+        </div>
+      )}
+    </div>
+    {hasSide && <slot name="side" />}
+  </div>
+</section>
+<div class="checker" aria-hidden="true"></div>

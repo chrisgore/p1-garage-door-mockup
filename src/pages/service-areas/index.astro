@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { CITIES } from '../../data/cities';
+import { href } from '../../config/site';
+---
+<Base title="Service Area: Cumming & North Atlanta" description="P1 Garage Door Repair serves Cumming, Forsyth County and nearby cities including Alpharetta, Johns Creek, Suwanee, Buford, Dawsonville, Gainesville and Canton.">
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'Service area' }]} eyebrow="Home track: Cumming, GA" title="Where we work" lede="Our shop is in Cumming. We cover Forsyth County and the cities around it, most within 30 minutes. No trip fee in the service area when we do the repair." />
+  <TrustStrip />
+  <section class="sec">
+    <div class="wrap">
+      <div class="city-grid">
+        {CITIES.map((c) => (
+          <a class="city-card" href={href(`/service-areas/${c.slug}/`)}>
+            <b>{c.name}</b>
+            <span>{c.county} · {c.slug === 'cumming-ga' ? 'home base' : c.driveFromCumming}</span>
+            <span>ZIP {c.zips.join(', ')}</span>
+          </a>
+        ))}
+      </div>
+      <p class="muted" style="margin-top:24px;max-width:62ch">Not on the list? Call anyway. We take jobs across north metro Atlanta when the schedule allows.</p>
+    </div>
+  </section>
+  <CtaBand />
+</Base>

@@ -1,0 +1,21 @@
+---
+import { SPECIALS } from '../data/specials';
+import { href } from '../config/site';
+interface Props { terms?: boolean }
+const { terms = false } = Astro.props;
+---
+<div class="boards">
+  {SPECIALS.map((s) => (
+    <article class="board">
+      <p class="amt">{s.amount}{s.unit && <small>{s.unit}</small>}</p>
+      <h3>{s.title}</h3>
+      <p>{s.text}</p>
+      {terms && <p class="terms">{s.terms}</p>}
+    </article>
+  ))}
+</div>
+<div class="match">
+  <b>Price-match promise</b>
+  <span>Got a lower written quote from a licensed local company? Show us and we'll match it.</span>
+  <a class="btn btn-pri" href={href('/contact/')}>Claim an offer</a>
+</div>

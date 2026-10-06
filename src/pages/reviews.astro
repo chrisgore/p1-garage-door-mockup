@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ReviewsGrid from '../components/ReviewsGrid.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE } from '../config/site';
+---
+<Base title="Customer Reviews" description="Read reviews from homeowners in Cumming, Alpharetta, Suwanee and across Forsyth County about P1 Garage Door Repair's spring, opener and new door work.">
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'Reviews' }]} eyebrow={`${SITE.rating} average on Google · placeholder`} title="Reviews" lede="What homeowners around Cumming say after a repair or new door. At launch this page pulls in real Google reviews." />
+  <section class="sec">
+    <div class="wrap">
+      <ReviewsGrid limit={6} />
+      <p class="muted" style="margin-top:24px">All reviews on this mockup are samples. <span class="tag">Sample</span></p>
+    </div>
+  </section>
+  <CtaBand title="Had us out? Leave a review." text="It helps your neighbors find a shop they can trust." />
+</Base>

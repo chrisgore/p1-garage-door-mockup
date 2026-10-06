@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SpecialsBoard from '../components/SpecialsBoard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import EstimateForm from '../components/EstimateForm.astro';
+---
+<Base title="Garage Door Specials & Coupons" description="Current P1 Garage Door Repair specials in Cumming, GA: money off new garage doors and spring replacement, a flat-price tune-up and our price-match promise.">
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'Specials' }]} eyebrow="This month's pit board" title="Specials" lede="Mention the offer when you call or book online. One offer per visit, and the price is always quoted before work starts." />
+  <section class="sec dark">
+    <div class="wrap">
+      <header class="sec-head"><p class="kicker">Current offers</p><h2>On the board now</h2><p>Amounts and terms are placeholders for the mockup. <span class="tag">Sample offers</span></p></header>
+      <SpecialsBoard terms />
+    </div>
+  </section>
+  <CtaBand title="Claim an offer" text="Tell us which special when you book." />
+  <section class="sec" id="estimate"><EstimateForm /></section>
+</Base>

@@ -1,0 +1,14 @@
+---
+import { href } from '../config/site';
+---
+<aside class="tower" aria-label="Today's open appointment windows, sample">
+  <div class="tw-head"><span class="live" aria-hidden="true"></span>Next open windows · Today</div>
+  <ol class="tw-rows">
+    <li class="lead"><span class="pos">P1</span><span class="slot">1:00 – 3:00 PM</span><span class="st open">Open</span></li>
+    <li><span class="pos">P2</span><span class="slot">3:00 – 5:00 PM</span><span class="st open">Open</span></li>
+    <li><span class="pos">P3</span><span class="slot">5:00 – 7:00 PM</span><span class="st few">1 left</span></li>
+    <li><span class="pos">P4</span><span class="slot">After 7:00 PM</span><span class="st em">Emergency</span></li>
+  </ol>
+  <a class="btn btn-pri tw-cta" href={href('/contact/')}>Take the P1 window</a>
+  <p class="fine">Sample schedule. At launch these come from the booking calendar.</p>
+</aside>

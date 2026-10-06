@@ -1,0 +1,7 @@
+---
+import Icon from './Icon.astro';
+const items = ['Licensed & insured', 'Upfront, flat-rate pricing', 'Same-day service', 'Price-match promise', 'Workmanship warranty'];
+---
+<div class="trust">
+  <ul class="wrap">{items.map((t) => <li><Icon name="check" size={20} stroke={3} />{t}</li>)}</ul>
+</div>

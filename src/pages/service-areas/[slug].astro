@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import TrustStrip from '../../components/TrustStrip.astro';
+import ServiceGrid from '../../components/ServiceGrid.astro';
+import FaqList from '../../components/FaqList.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Diagnose from '../../components/Diagnose.astro';
+import EstimateForm from '../../components/EstimateForm.astro';
+import ReviewsGrid from '../../components/ReviewsGrid.astro';
+import { CITIES, cityBySlug } from '../../data/cities';
+import { SERVICES } from '../../data/services';
+import { SITE, href } from '../../config/site';
+import type { City } from '../../data/types';
+
+export function getStaticPaths() {
+  return CITIES.map((c) => ({ params: { slug: c.slug }, props: { c } }));
+}
+const { c } = Astro.props as { c: City };
+const nearby = c.nearby.map(cityBySlug).filter((x): x is City => Boolean(x));
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const isHome = c.slug === 'cumming-ga';
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: c.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: new URL(href('/'), Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'Service area', item: new URL(href('/service-areas/'), Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: `${c.name}, GA`, item: url },
+    ],
+  },
+];
+---
+<Base title={c.metaTitle} description={c.metaDescription} schema={schema}>
+  <PageHero crumbs={[{ label: 'Home', path: '/' }, { label: 'Service area', path: '/service-areas/' }, { label: c.name }]} eyebrow={`${c.name}, GA · ${c.county}`} title={c.h1} lede={c.lede}>
+    <aside class="side-card" slot="side" aria-label={`Service details for ${c.name}`}>
+      <span class="lbl">{isHome ? 'Home base' : 'From our Cumming shop'}</span>
+      <span class="big">{isHome ? 'Cumming, GA' : c.driveFromCumming}</span>
+      <dl>
+        <div><dt>ZIP codes</dt><dd>{c.zips.join(' · ')}</dd></div>
+        <div><dt>County</dt><dd>{c.county}</dd></div>
+        <div><dt>Trip fee</dt><dd>$0 when we do the repair</dd></div>
+      </dl>
+      <a class="btn btn-pri" href={SITE.phoneHref}>Call {SITE.phone}</a>
+    </aside>
+  </PageHero>
+  <TrustStrip />
+
+  <section class="sec">
+    <div class="wrap content">
+      <div class="content-main">
+        <div class="block">
+          <p class="kicker">{c.name} garage door service</p>
+          <div class="prose">{c.intro.map((p) => <p>{p}</p>)}</div>
+          {c.landmarks.length > 0 && <ul class="landmarks" aria-label="Areas we cover">{c.landmarks.map((l) => <li>{l}</li>)}</ul>}
+        </div>
+        <div class="block">
+          <h2>Garage doors in {c.name}</h2>
+          <div class="notes">{c.localNotes.map((n) => <article class="note"><h3>{n.heading}</h3><p>{n.body}</p></article>)}</div>
+        </div>
+        <div class="block">
+          <p class="kicker">Questions</p>
+          <h2>{c.name} questions</h2>
+          <FaqList items={c.faqs} openFirst />
+        </div>
+      </div>
+      <aside class="aside">
+        <div class="aside-card">
+          <h3>Same-day in {c.name}</h3>
+          <a class="num" href={SITE.phoneHref}>{SITE.phone}</a>
+          <p class="muted">{SITE.hoursShort}.</p>
+          <a class="btn btn-pri" href={href('/contact/')}>Book online</a>
+        </div>
+        {nearby.length > 0 && (
+          <div class="aside-card">
+            <h3>Nearby areas</h3>
+            <ul>{nearby.map((n) => <li><a href={href(`/service-areas/${n.slug}/`)}>{n.name}</a></li>)}</ul>
+            <a class="link" href={href('/service-areas/')}>All areas →</a>
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec tint">
+    <div class="wrap">
+      <header class="sec-head"><p class="kicker">Services in {c.name}</p><h2>What we fix in {c.name}</h2></header>
+      <ServiceGrid items={SERVICES.filter((s) => s.slug !== 'garage-door-repair')} cols={4} />
+    </div>
+  </section>
+
+  <Diagnose />
+  <CtaBand title={`Door down in ${c.name}?`} />
+
+  <section class="sec">
+    <div class="wrap">
+      <header class="sec-head"><p class="kicker">Reviews</p><h2>Recent jobs nearby</h2></header>
+      <ReviewsGrid />
+    </div>
+  </section>
+
+  <section class="sec tint" id="estimate"><EstimateForm heading={`Get a price in ${c.name}`} /></section>
+</Base>
